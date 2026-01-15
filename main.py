@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+import os
 
 def sigmoid(z):
     return 1.0 / (1.0 + np.exp(-z))
@@ -34,7 +35,7 @@ def predict(X, theta, threshold=0.5):
 from sklearn.datasets import load_breast_cancer
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, confusion_matrix, roc_curve, auc, precision_recall_fscore_support
 
 X, y = load_breast_cancer(return_X_y=True)
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
@@ -53,3 +54,32 @@ test_acc = accuracy_score(y_test, y_pred_test)
 
 print(f"Training accuracy: {train_acc}")
 print(f"Testing accuracy: {test_acc}")
+
+# Create plots directory
+os.makedirs('plots',exist_ok=True)
+
+# Set seabrorn style
+sns.set_style("whitegrid")
+sns.set_palette("hus1")
+
+# 1. Confusion Matrix
+fig, axes = plt.subplots(1, 2, figsize=(14, 5))
+
+cm_train = confusion_matrix(y_train, y_pred_train)
+cm_test = confusion_matrix(y_test, y_pred_test)
+
+sns.heatmap(cm_train, annot=True, fmt='d', cmap="Blues", ax=axes[0], cbar=True)
+axes[0].set_title('Training Confusion Matrix', fontsize=16)
+axes[0].set_ylabel("True label")
+axes[0].set_xlabel("Predicted label")
+
+sns.heatmap(cm_test, annot=True, fmt='d', cmap="RdY1Gn", ax=axes[1], cbar=True)
+axes[1].set_title("Testing Confusion Matrix", fontsize=16)
+axes[1].set_ylabel("True label")
+axes[1].set_xlabel("Predicted label")
+
+plt.tight_layout()
+plt.savefig('plots/confusion_matrices.png', dpi=300, bbox_inches='tight')
+print("✓ Saved: confusion_matrices.png")
+plt.close()
+
