@@ -9,7 +9,7 @@ def calculate_gradient(theta, X, y):
     m = y.size # number of instances
     return (X.T @ (sigmoid(X @ theta) - y)) / m
 
-def gradient_descent(X, y, alpha=0.1, num_iter=100, tol=1e-7):
+def gradient_descent(X, y, alpha=0.1, num_iter=1, tol=1e-7):
     X_b = np.c_[np.ones((X.shape[0], 1)), X]
     theta = np.zeros(X_b.shape[1])
 
