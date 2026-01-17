@@ -70,8 +70,13 @@ python main.py
 ### Expected Output
 
 ```
-Training accuracy: 0.95
-Testing accuracy: 0.93
+Training accuracy: 0.9540
+Testing accuracy: 0.9298
+✓ Saved: confusion_matrices.png
+✓ Saved: roc_curve.png
+✓ Saved: accuracy_comparison.png
+✓ Saved: probability_distribution.png
+✓ Saved: metrics_heatmap.png
 ```
 
 ### Code Example
