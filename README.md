@@ -4,7 +4,7 @@ A clean, educational implementation of logistic regression built from scratch us
 
 ## Overview
 
-![S Shaped Curve](assets/logisticRegression.png)
+![S Shaped Curve](plots/logisticRegression.png)
 
 
 This project implements logistic regression from first principles, providing an excellent foundation for understanding how binary classification algorithms work under the hood. The implementation includes gradient descent optimization and is validated against real-world datasets.
